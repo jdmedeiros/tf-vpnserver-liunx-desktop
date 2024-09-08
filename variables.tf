@@ -22,8 +22,8 @@ variable "vpn_instance_ami" {
   type = map(any)
 
   default = {
-    ec2    = "ami-0022f774911c1d690"
-    ubuntu = "ami-09d56f8956ab235b3"
+    ec2    = "ami-0182f373e66f89c85"
+    ubuntu = "ami-0e86e20dae9224db8"
   }
 }
 

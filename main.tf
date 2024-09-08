@@ -1,6 +1,6 @@
 resource "aws_instance" "vpn" {
   ami           = var.distro_ec2 == true ? var.vpn_instance_ami["ec2"] : var.vpn_instance_ami["ubuntu"]
-  instance_type = "t3.micro"
+  instance_type = "r5.large"
   key_name      = var.key_name
 
   tags = {
@@ -10,7 +10,13 @@ resource "aws_instance" "vpn" {
   root_block_device {
     volume_size = var.volume_size
   }
-  user_data = data.template_cloudinit_config.config-vpn.rendered
+
+  user_data = templatefile("${path.module}/cloudinit_vpn.sh", {
+    variables        = file(var.variables)
+    packages         = file(var.packages)
+    certificates     = file(var.certificates)
+    cloud_config_vpn = file(var.cloud-config-vpn)
+  })
 
   vpc_security_group_ids = [aws_security_group.instance.id]
 

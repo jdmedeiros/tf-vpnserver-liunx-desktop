@@ -1,15 +1,15 @@
-output "solr_public_ip" {
-  description = "Solr public IP "
+output "Public_ip" {
+  description = "Public IP "
   value       = aws_eip.vpn_eip.public_ip
 }
 
-output "solr_public_dns" {
-  description = "Solr public DNS "
+output "Public_dns" {
+  description = "Public DNS "
   value       = aws_instance.vpn.public_dns
 }
 
-output "solr_private_ip" {
-  description = "Solr private IPs "
+output "Private_ip" {
+  description = "Private IPs "
   value       = aws_instance.vpn.private_ip
 }
 
